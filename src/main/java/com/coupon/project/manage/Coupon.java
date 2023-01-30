@@ -1,4 +1,6 @@
-package manage;
+package com.coupon.project.manage;
+
+import com.coupon.project.entities.Category;
 
 import java.util.Date;
 //This is Coupon Class

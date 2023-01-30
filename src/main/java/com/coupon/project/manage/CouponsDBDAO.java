@@ -1,4 +1,6 @@
-package manage;
+package com.coupon.project.manage;
+
+import com.coupon.project.entities.Category;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -10,7 +12,6 @@ conn con=new conn();
     	
 String start=coupon.getStartDate().getYear()+"-"+coupon.getStartDate().getMonth()+"-"+coupon.getStartDate().getDate();
 String end=coupon.getEndDate().getYear()+"-"+coupon.getEndDate().getMonth()+"-"+coupon.getEndDate().getDate();
-
 
     	String q="insert into COUPONS values(0,"+coupon.getCompanyID()+",'"+coupon.getCategory()+"','"+coupon.getDescription()+"','"+start+"','"+end+"',"+coupon.getAmount()+","+coupon.getPrice()+",'"+coupon.getImage()+"')";
     	con.stmt.executeUpdate(q);
@@ -52,7 +53,7 @@ String end=coupon.getEndDate().getYear()+"-"+coupon.getEndDate().getMonth()+"-"+
 
              c.setId(Integer.parseInt(id));
              c.setCompanyID(Integer.parseInt(comp_id));
-             c.setCategory(Category.Restaurant);
+             c.setCategory(new Category());
              c.setAmount(Integer.parseInt(Amount));
              c.setPrice(Double.parseDouble(price));
              
@@ -92,7 +93,7 @@ String end=coupon.getEndDate().getYear()+"-"+coupon.getEndDate().getMonth()+"-"+
 
             c.setId(Integer.parseInt(id));
             c.setCompanyID(Integer.parseInt(comp_id));
-            c.setCategory(Category.Restaurant);
+            c.setCategory(new Category());
             c.setAmount(Integer.parseInt(Amount));
             c.setPrice(Double.parseDouble(price));
 

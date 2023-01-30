@@ -1,4 +1,4 @@
-package manage;
+package com.coupon.project.manage;
 
 //This is CompanyFacade Class
 public class CompanyFacade extends ClientFacade{

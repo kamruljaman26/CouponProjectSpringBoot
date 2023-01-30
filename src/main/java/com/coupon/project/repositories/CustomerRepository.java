@@ -1,6 +1,8 @@
-package com.coupon.project;
+package com.coupon.project.repositories;
 
 import java.util.List;
+
+import com.coupon.project.entities.Customer;
 import org.springframework.data.repository.CrudRepository;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {

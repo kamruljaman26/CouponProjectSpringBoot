@@ -1,4 +1,4 @@
-package manage;
+package com.coupon.project.manage;
 //This is CleintFacade abstract Class
 abstract class ClientFacade {
 

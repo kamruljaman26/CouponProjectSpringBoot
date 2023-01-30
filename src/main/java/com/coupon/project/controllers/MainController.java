@@ -1,4 +1,4 @@
-package com.coupon.project;
+package com.coupon.project.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

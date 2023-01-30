@@ -1,5 +1,6 @@
-package com.coupon.project;
+package com.coupon.project.config;
 
+import com.coupon.project.Application;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 

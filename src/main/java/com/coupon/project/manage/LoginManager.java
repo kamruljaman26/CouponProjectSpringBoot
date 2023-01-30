@@ -1,4 +1,4 @@
-package manage;
+package com.coupon.project.manage;
 
 public class LoginManager {
     /**

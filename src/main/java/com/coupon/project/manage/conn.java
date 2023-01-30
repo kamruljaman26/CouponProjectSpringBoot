@@ -1,4 +1,4 @@
-package manage;
+package com.coupon.project.manage;
 import java.sql.*;
 //This is ConnectionPool Class
 public class conn {
