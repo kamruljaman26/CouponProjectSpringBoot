@@ -1,6 +1,8 @@
 package com.coupon.project;
 
+import com.coupon.project.entities.Company;
 import com.coupon.project.entities.Customer;
+import com.coupon.project.repositories.CompanyRepository;
 import com.coupon.project.repositories.CustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,18 +11,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Optional;
+
 @SpringBootApplication
 public class Application {
-	private static final Logger log = LoggerFactory.getLogger(Application.class);
+    private static final Logger log = LoggerFactory.getLogger(Application.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
-	@Bean
-	public CommandLineRunner demo(CustomerRepository repository) {
-		return (args) -> {
-			// save a few customers
+    @Bean
+    public CommandLineRunner demo(CompanyRepository repository) {
+        return (args) -> {
+            // save a few customers
 //			repository.save(new Customer("Jack", "Bauer"));
 //			repository.save(new Customer("Chloe", "O'Brian"));
 //			repository.save(new Customer("Kim", "Bauer"));
@@ -52,6 +56,13 @@ public class Application {
 //			//  log.info(bauer.toString());
 //			// }
 //			log.info("");
-		};
-	}
+//            repository.save(new Company("Trip Begin", "t@gmail.com", "1234"));
+//            repository.save(new Company("Standard", "s@gmail.com", "1234"));
+
+            log.info(repository.findById(1).toString());//            log.info(String.valueOf(companyExists.get()));
+            Optional<Company> com = repository.findCompanyByEmailEqualsAndPasswordEquals("s@gmail.com", "1234");
+            log.info(com.toString());
+
+        };
+    }
 }

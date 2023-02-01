@@ -1,7 +1,6 @@
 package com.coupon.project.entities;
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -9,11 +8,9 @@ public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private int id;
-
     private String name;
-    private String email;
+    @Column(unique = true) private String email;
     private String password;
 
     public Company() {

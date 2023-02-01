@@ -1,34 +1,30 @@
 package com.coupon.project.entities;
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class Category {
-     @Id
-     @GeneratedValue(strategy = GenerationType.AUTO)
-     @Column(name = "id", nullable = false)
-     private Long id;
 
+     @Id
+     @GeneratedValue(strategy=GenerationType.AUTO)
+     private int id;
      private String name;
 
      public Category() {}
-
      public Category(String name) {
           this.name = name;
      }
-
-     public Category(Long id, String name) {
+     public Category(int id, String name) {
           this.id = id;
           this.name = name;
      }
 
-     public Long getId() {
+     public int getId() {
           return id;
      }
 
-     public void setId(Long id) {
+     public void setId(int id) {
           this.id = id;
      }
 
@@ -45,7 +41,7 @@ public class Category {
           if (this == o) return true;
           if (o == null || getClass() != o.getClass()) return false;
           Category category = (Category) o;
-          return Objects.equals(id, category.id);
+          return id == category.id;
      }
 
      @Override
