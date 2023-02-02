@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 public abstract class ClientService {
 
     @Autowired
-    private CategoryRepo categoryRepo;
+    protected CategoryRepo categoryRepo;
     @Autowired
-    private CompanyRepo companyRepo;
+    protected CompanyRepo companyRepo;
     @Autowired
-    private CouponRepo couponRepo;
+    protected CouponRepo couponRepo;
     @Autowired
-    private CustomerRepo customerRepo;
+    protected CustomerRepo customerRepo;
     @Autowired
-    private CustomerVsCouponRepo cVCRepo;
+    protected CustomerVsCouponRepo cVCRepo;
 
     public abstract boolean login(String email, String password);
 }

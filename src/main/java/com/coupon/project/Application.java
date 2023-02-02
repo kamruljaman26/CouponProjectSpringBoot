@@ -3,6 +3,7 @@ package com.coupon.project;
 import com.coupon.project.entities.Category;
 import com.coupon.project.entities.Company;
 import com.coupon.project.entities.Coupon;
+import com.coupon.project.entities.Customer;
 import com.coupon.project.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,11 +34,20 @@ public class Application {
         return (args) -> {
 
             // save category
-/*            categoryRepo.save(new Category("Food"));
-            categoryRepo.save(new Category("Appliances"));
-            categoryRepo.save(new Category("Restaurants"));
-            categoryRepo.save(new Category("Vacations"));*/
+            log.info("Preloading: "+categoryRepo.save(new Category("Food")));
+            log.info("Preloading: "+categoryRepo.save(new Category("Appliances")));
+            log.info("Preloading: "+categoryRepo.save(new Category("Restaurants")));
+            log.info("Preloading: "+categoryRepo.save(new Category("Vacations")));
 
+            log.info("Preloading: "+ customerRepo.save(
+                    new Customer("Jhon","Due", "jhon@gmail.com","123456")));
+            log.info("Preloading: "+ customerRepo.save(
+                    new Customer("Loies","Due", "loies@gmail.com","123456")));
+
+            log.info("Preloading: " + companyRepo.save(
+                    new Company("SpaceX", "jhon@gmail.com", "123456")));
+            log.info("Preloading: " + companyRepo.save(
+                    new Company("Microsoft", "kamrul@gmail.com", "123456")));
 
 
         };
