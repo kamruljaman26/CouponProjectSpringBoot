@@ -8,10 +8,10 @@ public class CustomerVsCoupon {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Customer customer;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Coupon coupon;
 
     public CustomerVsCoupon() {

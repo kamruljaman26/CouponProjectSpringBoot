@@ -9,8 +9,11 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column(unique = true, updatable = false)
     private String name;
-    @Column(unique = true) private String email;
+    @Column(unique = true)
+    private String email;
     private String password;
 
     public Company() {

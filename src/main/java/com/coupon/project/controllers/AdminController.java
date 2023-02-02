@@ -3,11 +3,15 @@ package com.coupon.project.controllers;
 import com.coupon.project.Application;
 import com.coupon.project.entities.Company;
 import com.coupon.project.entities.Customer;
+import com.coupon.project.errors.exceptions.DuplicateCompanyNameOrEmailException;
+import com.coupon.project.errors.exceptions.DuplicateCustomerEmailException;
+import com.coupon.project.errors.exceptions.UpdateCompanyNameException;
 import com.coupon.project.services.AdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 
 @RestController
@@ -26,12 +30,14 @@ public class AdminController {
     }
 
     @PostMapping(path = "/company")
-    public Company addCompany(@RequestBody Company company) {
+    public Company addCompany(@RequestBody Company company)
+            throws DuplicateCompanyNameOrEmailException {
         return adminService.addCompany(company);
     }
 
     @PutMapping(path = "/company")
-    public Company updateCompany(@RequestBody Company company) {
+    public Company updateCompany(@RequestBody Company company)
+            throws UpdateCompanyNameException {
         return adminService.updateCompany(company);
     }
 
@@ -52,12 +58,12 @@ public class AdminController {
     }
 
     @PostMapping(path = "/customer")
-    public Customer addCustomer(@RequestBody Customer customer) {
+    public Customer addCustomer(@RequestBody Customer customer) throws DuplicateCustomerEmailException{
         return adminService.addCustomer(customer);
     }
 
     @PutMapping(path = "/customer")
-    public Customer updateCustomer(@RequestBody Customer customer) {
+    public Customer updateCustomer(@RequestBody Customer customer) throws DuplicateCustomerEmailException {
         return adminService.updateCustomer(customer);
     }
 

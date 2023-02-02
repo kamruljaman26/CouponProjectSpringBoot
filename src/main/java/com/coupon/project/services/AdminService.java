@@ -2,15 +2,15 @@ package com.coupon.project.services;
 
 import com.coupon.project.entities.Company;
 import com.coupon.project.entities.Customer;
+import com.coupon.project.errors.exceptions.DuplicateCompanyNameOrEmailException;
+import com.coupon.project.errors.exceptions.DuplicateCustomerEmailException;
+import com.coupon.project.errors.exceptions.UpdateCompanyNameException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 @Service
 public class AdminService extends ClientService {
-
-
-    // todo implements methods
 
     /**
      * validate admin email and password
@@ -25,12 +25,24 @@ public class AdminService extends ClientService {
 
     //  company ---------------------------------------
 
-    public Company addCompany(Company company) {
-        return companyRepo.save(company);
+    public Company addCompany(Company company) throws DuplicateCompanyNameOrEmailException {
+        try {
+            return companyRepo.save(company);
+        } catch (Exception e) {
+            throw new DuplicateCompanyNameOrEmailException(company);
+        }
     }
 
-    public Company updateCompany(Company company) {
-        return companyRepo.save(company);
+    public Company updateCompany(Company company) throws UpdateCompanyNameException {
+        try {
+            // company name can't be updated
+            if (!companyRepo.findById(company.getId()).get().getName().equals(company.getName())) {
+                throw new UpdateCompanyNameException(company);
+            }
+            return companyRepo.save(company);
+        } catch (UpdateCompanyNameException e) {
+            throw new UpdateCompanyNameException(company);
+        }
     }
 
     public boolean deleteCompany(int companyId) {
@@ -53,7 +65,7 @@ public class AdminService extends ClientService {
     public Company getOneCompany(int companyId) {
         try {
             return companyRepo.findById(companyId).get();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace(); // debug
             // if not found return null
             return null;
@@ -62,12 +74,20 @@ public class AdminService extends ClientService {
 
     // customer ---------------------------------------
 
-    public Customer addCustomer(Customer customer) {
-        return customerRepo.save(customer);
+    public Customer addCustomer(Customer customer) throws DuplicateCustomerEmailException {
+        try {
+            return customerRepo.save(customer);
+        } catch (Exception ex) {
+            throw new DuplicateCustomerEmailException(customer);
+        }
     }
 
-    public Customer updateCustomer(Customer customer) {
-        return customerRepo.save(customer);
+    public Customer updateCustomer(Customer customer) throws DuplicateCustomerEmailException {
+        try {
+            return customerRepo.save(customer);
+        } catch (Exception ex) {
+            throw new DuplicateCustomerEmailException(customer);
+        }
     }
 
     public boolean deleteCustomer(int customerId) {
@@ -77,7 +97,8 @@ public class AdminService extends ClientService {
         } catch (Exception e) {
             e.printStackTrace(); // debug
             return false;
-        }    }
+        }
+    }
 
     public ArrayList<Customer> getAllCustomers() {
         // convert iterator to an array list
@@ -89,7 +110,7 @@ public class AdminService extends ClientService {
     public Customer getOneCustomer(int customerId) {
         try {
             return customerRepo.findById(customerId).get();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace(); // debug
             // if not found return null
             return null;
