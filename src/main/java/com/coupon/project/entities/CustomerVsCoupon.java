@@ -51,4 +51,13 @@ public class CustomerVsCoupon {
     public void setCoupon(Coupon coupon) {
         this.coupon = coupon;
     }
+
+    @Override
+    public String toString() {
+        return "CustomerVsCoupon{" +
+                "id=" + id +
+                ", customer=" + customer +
+                ", coupon=" + coupon +
+                '}';
+    }
 }

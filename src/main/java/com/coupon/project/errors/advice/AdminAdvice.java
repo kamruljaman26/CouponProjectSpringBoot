@@ -26,7 +26,6 @@ public class AdminAdvice {
         return ex.getMessage();
     }
 
-
     @ResponseBody
     @ExceptionHandler(DuplicateCustomerEmailException.class)
     @ResponseStatus(HttpStatus.EXPECTATION_FAILED)

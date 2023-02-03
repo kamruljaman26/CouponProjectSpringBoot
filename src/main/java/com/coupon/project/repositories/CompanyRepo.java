@@ -13,5 +13,5 @@ import java.util.Optional;
 public interface CompanyRepo extends CrudRepository<Company, Integer> {
     // automatically add curd methods
     @Query(value = "SELECT * FROM company WHERE email = :email AND password = :password", nativeQuery = true)
-    Customer findByEmailAndPassword(@Param("email") String email, @Param("password") String password);
+    Company findByEmailAndPassword(@Param("email") String email, @Param("password") String password);
 }

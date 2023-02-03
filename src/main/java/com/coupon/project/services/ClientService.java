@@ -19,4 +19,5 @@ public abstract class ClientService {
     protected CustomerVsCouponRepo cVCRepo;
 
     public abstract boolean login(String email, String password);
+
 }

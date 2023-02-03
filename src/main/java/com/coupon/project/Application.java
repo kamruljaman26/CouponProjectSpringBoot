@@ -13,12 +13,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Optional;
+import java.time.LocalDateTime;
+
 
 @SpringBootApplication
 public class Application {
     private static final Logger log = LoggerFactory.getLogger(Application.class);
-
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
@@ -49,6 +49,19 @@ public class Application {
             log.info("Preloading: " + companyRepo.save(
                     new Company("Microsoft", "kamrul@gmail.com", "123456")));
 
+            // preloading coupon
+            Coupon coupon = new Coupon();
+            coupon.setAmount(100);
+            coupon.setCategory(categoryRepo.findAll().iterator().next());
+            coupon.setCompany(companyRepo.findAll().iterator().next());
+            coupon.setDescription("Coupon Description");
+            coupon.setStartDate(LocalDateTime.now());
+            coupon.setEndDate(LocalDateTime.now().plusDays(10L));
+            coupon.setImage("https://image.com");
+            coupon.setPrice(200);
+            coupon.setTitle("Buy 1 Get 2");
+            couponRepo.save(coupon);
+            log.info("Preloading: " + coupon);
 
         };
     }
