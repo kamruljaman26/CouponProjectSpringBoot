@@ -11,7 +11,7 @@ public class Coupon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Company company;
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;

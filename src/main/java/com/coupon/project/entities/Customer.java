@@ -90,7 +90,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "CustomerService{" +
+        return "Customer{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

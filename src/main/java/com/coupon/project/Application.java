@@ -12,11 +12,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.time.LocalDateTime;
 
 
 @SpringBootApplication
+@EnableScheduling
 public class Application {
     private static final Logger log = LoggerFactory.getLogger(Application.class);
     public static void main(String[] args) {
@@ -49,7 +51,7 @@ public class Application {
             log.info("Preloading: " + companyRepo.save(
                     new Company("Microsoft", "kamrul@gmail.com", "123456")));
 
-            // preloading coupon
+            // preloading cleanedCoupon
             Coupon coupon = new Coupon();
             coupon.setAmount(100);
             coupon.setCategory(categoryRepo.findAll().iterator().next());
@@ -62,6 +64,19 @@ public class Application {
             coupon.setTitle("Buy 1 Get 2");
             couponRepo.save(coupon);
             log.info("Preloading: " + coupon);
+
+            Coupon cleanedCoupon = new Coupon();
+            cleanedCoupon.setAmount(100);
+            cleanedCoupon.setCategory(categoryRepo.findAll().iterator().next());
+            cleanedCoupon.setCompany(companyRepo.findAll().iterator().next());
+            cleanedCoupon.setDescription("Coupon Description");
+            cleanedCoupon.setStartDate(LocalDateTime.now().minusDays(5));
+            cleanedCoupon.setEndDate(LocalDateTime.now().minusDays(2));
+            cleanedCoupon.setImage("https://image.com");
+            cleanedCoupon.setPrice(200);
+            cleanedCoupon.setTitle("Buy 1 Get 2");
+            couponRepo.save(cleanedCoupon);
+            log.info("Preloading: " + cleanedCoupon);
 
         };
     }
