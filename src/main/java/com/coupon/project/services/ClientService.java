@@ -16,7 +16,7 @@ public abstract class ClientService {
     @Autowired
     protected CustomerRepo customerRepo;
     @Autowired
-    protected CustomerVsCouponRepo cVCRepo;
+    protected CustomerVsCouponRepo customerVsCouponRepo;
 
     public abstract boolean login(String email, String password);
 

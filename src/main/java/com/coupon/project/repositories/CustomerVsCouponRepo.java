@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface CustomerVsCouponRepo
         extends CrudRepository<CustomerVsCoupon, Integer> {
     // provide filtered list based on customer
-    Iterable<CustomerVsCouponRepo> findAllByCustomerEquals(Customer customer);
+    Iterable<CustomerVsCoupon> findAllByCustomerEquals(Customer customer);
 }

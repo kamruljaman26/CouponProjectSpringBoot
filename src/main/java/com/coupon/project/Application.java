@@ -65,6 +65,7 @@ public class Application {
             couponRepo.save(coupon);
             log.info("Preloading: " + coupon);
 
+            // preloading to check automating cleaning
             Coupon cleanedCoupon = new Coupon();
             cleanedCoupon.setAmount(100);
             cleanedCoupon.setCategory(categoryRepo.findAll().iterator().next());
@@ -74,7 +75,7 @@ public class Application {
             cleanedCoupon.setEndDate(LocalDateTime.now().minusDays(2));
             cleanedCoupon.setImage("https://image.com");
             cleanedCoupon.setPrice(200);
-            cleanedCoupon.setTitle("Buy 1 Get 2");
+            cleanedCoupon.setTitle("Get 20% discount on all food");
             couponRepo.save(cleanedCoupon);
             log.info("Preloading: " + cleanedCoupon);
 
