@@ -1,7 +1,9 @@
 package com.coupon.project.services;
 
 import com.coupon.project.entities.Company;
+import com.coupon.project.entities.Coupon;
 import com.coupon.project.entities.Customer;
+import com.coupon.project.entities.CustomerVsCoupon;
 import com.coupon.project.errors.exceptions.DuplicateCompanyNameOrEmailException;
 import com.coupon.project.errors.exceptions.DuplicateCustomerEmailException;
 import com.coupon.project.errors.exceptions.UpdateCompanyNameException;
@@ -47,6 +49,27 @@ public class AdminService extends ClientService {
 
     public boolean deleteCompany(int companyId) {
         try {
+            // delete all customer vs coupon
+            ArrayList<CustomerVsCoupon> listCVC = new ArrayList<>();
+            customerVsCouponRepo.findAll().forEach(cvc -> {
+                Company c = cvc.getCoupon().getCompany();
+                if (c.getId() == companyId) listCVC.add(cvc);
+            });
+            System.out.println(listCVC.toString());
+            listCVC.forEach(cvc -> {
+                customerVsCouponRepo.delete(cvc);
+            });
+
+            // delete all customer vs coupon
+            ArrayList<Coupon> listCoupon = new ArrayList<>();
+            couponRepo.findAll().forEach(c -> {
+                if (c.getCompany().getId() == companyId) listCoupon.add(c);
+            });
+            System.out.println(listCoupon.toString());
+            listCoupon.forEach(c -> {
+                couponRepo.delete(c);
+            });
+
             companyRepo.deleteById(companyId);
             return true;
         } catch (Exception e) {

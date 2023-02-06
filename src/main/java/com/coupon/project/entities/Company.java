@@ -12,8 +12,10 @@ public class Company {
 
     @Column(unique = true, updatable = false)
     private String name;
+
     @Column(unique = true)
     private String email;
+
     private String password;
 
     public Company() {

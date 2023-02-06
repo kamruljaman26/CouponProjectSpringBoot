@@ -1,9 +1,7 @@
 package com.coupon.project.services;
 
 import com.coupon.project.Application;
-import com.coupon.project.entities.Category;
-import com.coupon.project.entities.Company;
-import com.coupon.project.entities.Coupon;
+import com.coupon.project.entities.*;
 import com.coupon.project.errors.exceptions.DuplicateCouponNameException;
 import com.coupon.project.errors.exceptions.NotLoginException;
 import org.slf4j.Logger;
@@ -66,6 +64,16 @@ public class CompanyService extends ClientService {
         if (company == null) throw new NotLoginException();
 
         try {
+            // delete all customer vs coupon
+            ArrayList<CustomerVsCoupon> listCVC = new ArrayList<>();
+            customerVsCouponRepo.findAll().forEach(cvc -> {
+                if (cvc.getCoupon().getId() == couponId) listCVC.add(cvc);
+            });
+//            System.out.println(listCVC.toString());
+            listCVC.forEach(cvc -> {
+                customerVsCouponRepo.delete(cvc);
+            });
+
             couponRepo.deleteById(couponId);
             return true;
         } catch (Exception e) {
